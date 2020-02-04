@@ -3,7 +3,7 @@ import Api from './Api'
 export default {
   pokemonList (req) {
     const api = Api.generateApi()
-    return api.get('pokemon?offset=' + req.offset + '&' + req.limit).then(res => res)
+    return api.get('pokemon?offset=' + req.offset + '&limit=' + req.limit).then(res => res)
   },
 
   pokemonDetail (req) {

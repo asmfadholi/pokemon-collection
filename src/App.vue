@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/pokemon/list">List</router-link> |
-      <router-link to="/pokemon/detail/bulbasur">Detail</router-link> |
+      <router-link to="/pokemon/detail/bulbasaur">Detail</router-link> |
       <router-link to="/pokemon/collection">Collection</router-link>
     </div>
     <router-view/>

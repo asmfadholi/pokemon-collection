@@ -11,6 +11,9 @@ export default {
   name: 'PokemonList',
   computed: {
     ...mapState('PokemonStore', ['pokemonState'])
+  },
+  created () {
+    this.$store.dispatch('PokemonStore/pokemonList', { offset: 0, limit: 20 })
   }
 }
 </script>
