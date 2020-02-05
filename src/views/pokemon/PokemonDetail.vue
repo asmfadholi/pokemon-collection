@@ -20,7 +20,7 @@
 
             <br>
 
-            <b-btn variant="success" @click="$refs.modal.show()">Catch</b-btn>
+            <b-btn variant="success" @click="catchPokemon">Catch</b-btn>
           </div>
           <div v-else class="card catch loading">
 
@@ -76,21 +76,36 @@
             :hideHeader="true"
             :noCloseOnBackdrop="true"
             :noCloseOnEsc="true">
-            <b-form>
-              <b-form-group
-              label="Your Pokemon Name"
-              label-for="name-input"
-              invalid-feedback="Name is required">
-                <b-form-input
-                  id="name-input"
-                  v-model="itemData.pokemon_name"
-                  required
-                ></b-form-input>
-              </b-form-group>
-            </b-form>
 
-            <div class="d-flex justify-content-center">
-              <b-btn variant="primary" @click="savePokemon">Save</b-btn>
+            <b>
+              {{ possibility === 'info' ? 'Capturing pokemon....' : (possibility === 'success' ? 'Congraturation !!!' : 'Failed, pokemon dissapeared') }}
+            </b>
+
+            <b-progress class="mt-2" :max="max" show-value>
+              <b-progress-bar :value="value" :variant="possibility"></b-progress-bar>
+            </b-progress>
+
+            <br>
+
+            <div>
+              <b-form v-if="possibility === 'success'">
+                <b-form-group
+                label="You got new Pokemon"
+                label-for="name-input"
+                invalid-feedback="Name is required">
+                  <b-form-input
+                    id="name-input"
+                    placeholder="Enter your pokemon's name"
+                    v-model="itemData.pokemon_name"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+              </b-form>
+
+              <div class="d-flex justify-content-center">
+                <b-btn variant="primary" @click="savePokemon" v-if="possibility === 'success'">Save</b-btn>
+                <b-btn variant="danger" @click="hideToRedirect" v-else-if="possibility === 'danger'">Back</b-btn>
+              </div>
             </div>
 
           </b-modal>
@@ -108,6 +123,9 @@ export default {
   name: 'PokemonDetail',
   data () {
     return {
+      max: 100,
+      value: 10,
+      probability: 'info',
       loading: false,
       mainProps: { blank: true, blankColor: '#f0f0f0', width: 150, height: 150, class: 'm1' },
       itemData: {
@@ -143,6 +161,15 @@ export default {
         pokemon_name: this.itemData.pokemon_name,
         sprites: this.itemData.sprites
       }
+
+      this.$swal({
+        title: 'Congratulation !!!',
+        text: 'Pokemon ' + this.itemData.pokemon_name + ' have been added to your collection',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'Ok'
+      })
+
       this.$store.commit('PokemonStore/collectData', data)
       this.$refs.modal.hide()
       this.$router.replace(this.$route.matched[1].path)
@@ -150,6 +177,27 @@ export default {
 
     hideToRedirect () {
       this.$router.replace(this.$route.matched[1].path)
+    },
+
+    checkProbability () {
+      if (Math.random() < 0.5) {
+        this.possibility = 'success'
+      } else {
+        this.possibility = 'danger'
+      }
+    },
+
+    catchPokemon () {
+      this.$refs.modal.show()
+      this.possibility = 'info'
+      this.value = 0
+      const intervalProgress = setInterval(() => {
+        this.value += 10
+        if (this.value === 100) {
+          clearInterval(intervalProgress)
+          this.checkProbability()
+        }
+      }, 500)
     }
   }
 }
