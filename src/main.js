@@ -5,6 +5,7 @@ import store from './stores'
 import './registerServiceWorker'
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import VueRandomColor from 'vue-randomcolor'
 
 // Styling
 import 'bootstrap/dist/css/bootstrap.css'
@@ -14,6 +15,7 @@ import './scss/index.scss'
 // install plugin
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(VueRandomColor)
 
 Vue.config.productionTip = false
 
