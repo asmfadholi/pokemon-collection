@@ -7,7 +7,7 @@ export default {
     pokemonState: {
       detail: null,
       list: null,
-      collections: null
+      collections: []
     }
   },
 
@@ -18,6 +18,10 @@ export default {
   mutations: {
     storeData (state, payload) {
       state.pokemonState[payload.state] = payload.data
+    },
+
+    collectData (state, payload) {
+      state.pokemonState.collections.push(payload)
     }
   },
 
