@@ -20,6 +20,7 @@
     "vue": "^2.6.10",
     "vue-randomcolor": "^1.0.4",
     "vue-router": "^3.0.3",
+    "vue-sweetalert2": "^3.0.1",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.7.0"
   },

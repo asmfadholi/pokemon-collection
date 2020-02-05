@@ -22,6 +22,10 @@ export default {
 
     collectData (state, payload) {
       state.pokemonState.collections.push(payload)
+    },
+
+    removeData (state, payload) {
+      state.pokemonState.collections.splice(payload, 1)
     }
   },
 

@@ -6,8 +6,10 @@
     </div>
 
     <transition name="fade" mode="out-in">
-      <router-view class="mt-5">
-      </router-view>
+      <keep-alive>
+        <router-view class="mt-5">
+        </router-view>
+      </keep-alive>
     </transition>
 
   </div>

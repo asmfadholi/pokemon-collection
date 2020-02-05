@@ -4,18 +4,21 @@ import router from './routers'
 import store from './stores'
 import './registerServiceWorker'
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import VueRandomColor from 'vue-randomcolor'
+import VueSweetalert2 from 'vue-sweetalert2'
 
 // Styling
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'sweetalert2/dist/sweetalert2.min.css'
 import './scss/index.scss'
 
 // install plugin
 Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
+Vue.use(BootstrapVueIcons)
 Vue.use(VueRandomColor)
+Vue.use(VueSweetalert2)
 
 Vue.config.productionTip = false
 
