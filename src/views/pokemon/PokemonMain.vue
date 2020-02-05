@@ -1,9 +1,15 @@
 <template>
   <div>
-    This Main Page
-    <router-view>
+    <div id="nav" class="fixed-top mb-5">
+      <router-link to="/pokemon">Find Pokemon</router-link> |
+      <router-link to="/pokemon/collection">My Collections</router-link>
+    </div>
 
-    </router-view>
+    <transition name="fade" mode="out-in">
+      <router-view class="mt-5">
+      </router-view>
+    </transition>
+
   </div>
 </template>
 

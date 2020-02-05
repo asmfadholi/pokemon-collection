@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/pokemon/list">List</router-link> |
-      <router-link to="/pokemon/detail/bulbasaur">Detail</router-link> |
+    <!-- <div id="nav">
+      <router-link to="/pokemon">List</router-link> |
       <router-link to="/pokemon/collection">Collection</router-link>
-    </div>
+    </div> -->
     <router-view/>
   </div>
 </template>
@@ -19,8 +18,11 @@
 }
 #nav {
   padding: 30px;
+  background-color: #fcfcfc;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.075);
   a {
     font-weight: bold;
+    font-size: 1rem;
     color: #2c3e50;
     &.router-link-exact-active {
       color: #42b983;

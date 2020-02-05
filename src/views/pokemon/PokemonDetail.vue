@@ -6,19 +6,26 @@
       @hidden="hideToRedirect"
       ref="modalParent">
 
-      <div>
+      <div class="pokemon-detail">
         <div class="d-flex justify-content-center">
-          <h2>{{ itemData.name }}</h2>
+          <div v-if="!loading" class="card catch">
+            <div class="d-flex justify-content-center">
+              <h2>{{ itemData.name }}</h2>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <b-img v-if="itemData.sprites.front_shiny" rounded="circle" alt="Circle image" :src="itemData.sprites.front_shiny"></b-img>
+              <div v-else class="unknown-pokemon">?</div>
+            </div>
+
+            <br>
+
+            <b-btn variant="success" @click="$refs.modal.show()">Catch</b-btn>
+          </div>
+          <div v-else class="card catch loading">
+
+          </div>
         </div>
-
-        <div class="d-flex justify-content-center">
-          <b-img v-if="itemData.sprites.front_shiny" rounded="circle" alt="Circle image" :src="itemData.sprites.front_shiny"></b-img>
-          <b-img v-else v-bind="mainProps" rounded="circle" alt="Circle image"></b-img>
-        </div>
-
-        <br>
-
-        <b-btn variant="success" @click="$refs.modal.show()">Catch</b-btn>
 
         <br>
         <br>
@@ -101,7 +108,8 @@ export default {
   name: 'PokemonDetail',
   data () {
     return {
-      mainProps: { blank: true, blankColor: '#777', width: 75, height: 75, class: 'm1' },
+      loading: false,
+      mainProps: { blank: true, blankColor: '#f0f0f0', width: 75, height: 75, class: 'm1' },
       itemData: {
         pokemon_name: null,
         name: '-',
@@ -120,10 +128,12 @@ export default {
   watch: {
     'pokemonState.detail' (newVal) {
       this.itemData = { ...newVal, pokemon_name: null }
+      this.loading = false
     }
   },
   created () {
     this.$store.dispatch('PokemonStore/pokemonDetail', { name: this.$route.params.name })
+    this.loading = true
   },
   mounted () {
     this.$refs.modalParent.show()
