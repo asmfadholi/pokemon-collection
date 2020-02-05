@@ -84,9 +84,17 @@ body {
             border-radius: 4px;
             background-color: rgb(252, 252, 252);
             &.loading {
-                height: 236px;
+                height: 272px;
                 background-color: rgba(0, 0, 0, 0.125);
             }
+        }
+    }
+    .total-collection {
+        b {
+            padding: 5px;
+            border: 1px solid #b4b4b4;
+            border-radius: 10px;
+            color: #949090;
         }
     }
     .box {
