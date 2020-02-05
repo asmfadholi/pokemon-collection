@@ -138,7 +138,12 @@ export default {
   },
   methods: {
     savePokemon () {
-      this.$store.commit('PokemonStore/collectData', this.itemData)
+      const data = {
+        name: this.itemData.name,
+        pokemon_name: this.itemData.pokemon_name,
+        sprites: this.itemData.sprites
+      }
+      this.$store.commit('PokemonStore/collectData', data)
       this.$refs.modal.hide()
       this.$router.replace(this.$route.matched[1].path)
     },

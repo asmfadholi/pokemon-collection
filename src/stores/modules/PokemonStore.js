@@ -17,7 +17,24 @@ export default {
 
   mutations: {
     storeData (state, payload) {
-      state.pokemonState[payload.state] = payload.data
+      if (payload.state === 'detail') {
+        const moves = payload.data.moves.map(d => {
+          return {
+            move: {
+              name: d.move.name
+            }
+          }
+        })
+        const data = {
+          name: payload.data.name,
+          types: payload.data.types,
+          sprites: payload.data.sprites,
+          moves
+        }
+        state.pokemonState[payload.state] = data
+      } else {
+        state.pokemonState[payload.state] = payload.data
+      }
     },
 
     collectData (state, payload) {
