@@ -4,7 +4,7 @@ import createPersistedState from 'vuex-persistedstate'
 import PokemonStore from './modules/PokemonStore'
 import SecureLS from 'secure-ls'
 
-let ls = new SecureLS({ isCompression: false })
+let ls = new SecureLS({ isCompression: true })
 
 Vue.use(Vuex)
 
