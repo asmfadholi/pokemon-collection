@@ -1,34 +1,96 @@
 <template>
   <div>
-    <h2>{{ itemData.name }}</h2>
-    <div>
-      <b-img v-if="itemData.sprites.front_shiny" rounded="circle" alt="Circle image" :src="itemData.sprites.front_shiny"></b-img>
-      <b-img v-else v-bind="mainProps" rounded="circle" alt="Circle image"></b-img>
-    </div>
+    <b-modal
+      size="lg"
+      :hideFooter="true"
+      @hidden="hideToRedirect"
+      ref="modalParent">
 
-    <b-btn variant="success" @click="$store.commit('PokemonStore/collectData', itemData)">Catch</b-btn>
-
-    <b-row>
-      <b-col cols="12" sm="3" md="4">
-        Types
-        <div v-for="(type, index) in itemData.types" :key="index">
-          {{ type.type.name }}
+      <div>
+        <div class="d-flex justify-content-center">
+          <h2>{{ itemData.name }}</h2>
         </div>
-      </b-col>
-      <b-col cols="12" sm="9" md="8">
-        Moves
-        <b-row>
-          <b-col cols="6" sm="4" md="3" v-for="(move, index) in itemData.moves" :key="index">
-            {{ move.move.name }}
-          </b-col>
-        </b-row>
 
-      </b-col>
-    </b-row>
+        <div class="d-flex justify-content-center">
+          <b-img v-if="itemData.sprites.front_shiny" rounded="circle" alt="Circle image" :src="itemData.sprites.front_shiny"></b-img>
+          <b-img v-else v-bind="mainProps" rounded="circle" alt="Circle image"></b-img>
+        </div>
 
-    <div>
+        <br>
 
-    </div>
+        <b-btn variant="success" @click="$refs.modal.show()">Catch</b-btn>
+
+        <br>
+        <br>
+
+        <div role="tablist">
+          <b-card no-body class="mb-1">
+            <b-card-header header-tag="header" class="p-1" role="tab">
+              <b-button block href="#" v-b-toggle.accordion-1 variant="info">Types</b-button>
+            </b-card-header>
+            <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+              <b-card-body>
+
+                <b-row>
+                  <b-col cols="12" sm="6" md="6" v-for="(type, index) in itemData.types" :key="index">
+                    {{ type.type.name }}
+                    <hr />
+                  </b-col>
+                </b-row>
+
+              </b-card-body>
+            </b-collapse>
+          </b-card>
+
+          <b-card no-body class="mb-1">
+            <b-card-header header-tag="header" class="p-1" role="tab">
+              <b-button block href="#" v-b-toggle.accordion-2 variant="info">Moves</b-button>
+            </b-card-header>
+            <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
+              <b-card-body>
+                <b-card-text>
+                  <b-row>
+                    <b-col cols="6" sm="4" md="3" v-for="(move, index) in itemData.moves" :key="index">
+                      {{ move.move.name }}
+                      <hr />
+                    </b-col>
+                  </b-row>
+                </b-card-text>
+              </b-card-body>
+            </b-collapse>
+          </b-card>
+
+        </div>
+
+        <div>
+          <b-modal
+            ref="modal"
+            :hideFooter="true"
+            :hideHeader="true"
+            :noCloseOnBackdrop="true"
+            :noCloseOnEsc="true">
+            <b-form>
+              <b-form-group
+              label="Your Pokemon Name"
+              label-for="name-input"
+              invalid-feedback="Name is required">
+                <b-form-input
+                  id="name-input"
+                  v-model="itemData.pokemon_name"
+                  required
+                ></b-form-input>
+              </b-form-group>
+            </b-form>
+
+            <div class="d-flex justify-content-center">
+              <b-btn variant="primary" @click="savePokemon">Save</b-btn>
+            </div>
+
+          </b-modal>
+        </div>
+      </div>
+
+    </b-modal>
   </div>
 </template>
 
@@ -41,6 +103,7 @@ export default {
     return {
       mainProps: { blank: true, blankColor: '#777', width: 75, height: 75, class: 'm1' },
       itemData: {
+        pokemon_name: null,
         name: '-',
         types: [],
         moves: [],
@@ -56,11 +119,25 @@ export default {
   },
   watch: {
     'pokemonState.detail' (newVal) {
-      this.itemData = { ...newVal }
+      this.itemData = { ...newVal, pokemon_name: null }
     }
   },
   created () {
     this.$store.dispatch('PokemonStore/pokemonDetail', { name: this.$route.params.name })
+  },
+  mounted () {
+    this.$refs.modalParent.show()
+  },
+  methods: {
+    savePokemon () {
+      this.$store.commit('PokemonStore/collectData', this.itemData)
+      this.$refs.modal.hide()
+      this.$router.replace('/pokemon/collection')
+    },
+
+    hideToRedirect () {
+      this.$router.replace(this.$route.matched[1].path)
+    }
   }
 }
 </script>

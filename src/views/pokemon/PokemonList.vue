@@ -14,6 +14,9 @@
         :per-page="20"
       ></b-pagination>
     </div>
+
+    <router-view/>
+
   </div>
 </template>
 

@@ -9,23 +9,36 @@ export default [
     path: '/',
     name: 'Main',
     component: PokemonMain,
-    redirect: '/pokemon/list',
+    redirect: '/pokemon',
     children: [
 
       {
-        path: '/pokemon/list',
+        path: '/pokemon',
         name: 'Pokemon List',
-        component: PokemonList
-      },
-      {
-        path: '/pokemon/detail/:name',
-        name: 'Pokemon Detail',
-        component: PokemonDetail
+        component: PokemonList,
+        children: [
+
+          {
+            path: '/pokemon/detail/:name',
+            name: 'Pokemon Detail',
+            component: PokemonDetail
+          }
+
+        ]
       },
       {
         path: '/pokemon/collection',
         name: 'Pokemon Collection',
-        component: PokemonCollection
+        component: PokemonCollection,
+        children: [
+
+          {
+            path: '/pokemon/collection/detail/:name',
+            name: 'Pokemon Detail',
+            component: PokemonDetail
+          }
+
+        ]
       }
 
     ]

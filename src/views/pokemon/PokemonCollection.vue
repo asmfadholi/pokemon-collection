@@ -1,6 +1,8 @@
 <template>
   <div>
     This is Collection of Pokemon
+
+    <router-view/>
   </div>
 </template>
 
