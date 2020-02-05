@@ -142,7 +142,7 @@ export default {
     savePokemon () {
       this.$store.commit('PokemonStore/collectData', this.itemData)
       this.$refs.modal.hide()
-      this.$router.replace('/pokemon')
+      this.$router.replace(this.$route.matched[1].path)
     },
 
     hideToRedirect () {
