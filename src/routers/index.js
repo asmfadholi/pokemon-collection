@@ -10,7 +10,6 @@ const modules = [
 
 export default new Router({
   mode: 'history',
-  base: '/',
   routes: [{
     path: '*',
     redirect: '/'
