@@ -2,7 +2,7 @@
   <b-container fluid class="pokemon-collection pt-5 mt-5">
 
     <div class="pokemon-content">
-      <!-- <transition-group name="list"> -->
+
         <b-row v-if="!loading">
 
             <b-col cols="12" sm="4" md="3" v-for="(pokemon, index) in itemData" :key="index">
@@ -37,7 +37,11 @@
             </div>
           </b-col>
         </b-row>
-      <!-- </transition-group> -->
+
+    </div>
+
+    <div v-if="!loading && itemData.length < 1" class="d-flex justify-content-center mt-5">
+      You have no any collection of Pokemon.
     </div>
 
     <router-view/>

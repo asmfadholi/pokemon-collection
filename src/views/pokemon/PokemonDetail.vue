@@ -14,7 +14,7 @@
             </div>
 
             <div class="d-flex justify-content-center">
-              <b-img v-if="itemData.sprites.front_shiny" rounded="circle" alt="Circle image" :src="itemData.sprites.front_shiny"></b-img>
+              <b-img-lazy v-bind="mainProps" v-if="itemData.sprites.front_shiny" rounded="circle" alt="Circle image" :src="itemData.sprites.front_shiny"></b-img-lazy>
               <div v-else class="unknown-pokemon">?</div>
             </div>
 
@@ -109,7 +109,7 @@ export default {
   data () {
     return {
       loading: false,
-      mainProps: { blank: true, blankColor: '#f0f0f0', width: 75, height: 75, class: 'm1' },
+      mainProps: { blank: true, blankColor: '#f0f0f0', width: 150, height: 150, class: 'm1' },
       itemData: {
         pokemon_name: null,
         name: '-',
@@ -131,12 +131,10 @@ export default {
       this.loading = false
     }
   },
-  created () {
-    this.$store.dispatch('PokemonStore/pokemonDetail', { name: this.$route.params.name })
-    this.loading = true
-  },
   mounted () {
     this.$refs.modalParent.show()
+    this.$store.dispatch('PokemonStore/pokemonDetail', { name: this.$route.params.name })
+    this.loading = true
   },
   methods: {
     savePokemon () {
