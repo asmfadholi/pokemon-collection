@@ -1,4 +1,4 @@
-import ApiPokemon from '@/services/ApiPokemon'
+import Api from '@/services'
 
 export default {
   namespaced: true,
@@ -49,7 +49,7 @@ export default {
   actions: {
     async pokemonList ({ commit }, req) {
       try {
-        const res = await ApiPokemon.pokemonList(req)
+        const res = await Api.pokemonList(req)
         res.state = 'list'
         commit('storeData', res)
       } catch (e) {
@@ -59,7 +59,7 @@ export default {
 
     async pokemonDetail ({ commit }, req) {
       try {
-        const res = await ApiPokemon.pokemonDetail(req)
+        const res = await Api.pokemonDetail(req)
         res.state = 'detail'
         commit('storeData', res)
       } catch (e) {
