@@ -23,19 +23,19 @@ Vue.use(VueSweetalert2)
 Vue.use(VueAnalytics, {
   id: process.env.VUE_APP_ANALYTICS,
   // checkDuplicatedScript: true,
-  autoTracking: {
-    screenview: true
-  },
+  // autoTracking: {
+  //   screenview: true
+  // },
   commands: {
     trackName (name = 'unknown') {
       this.$ga.event('randomClicks', 'click', 'name', name)
     }
   },
-  batch: {
-    enabled: true, // enable/disable
-    amount: 2, // amount of events fired
-    delay: 500 // delay in milliseconds
-  },
+  // batch: {
+  //   enabled: true, // enable/disable
+  //   amount: 2, // amount of events fired
+  //   delay: 500 // delay in milliseconds
+  // },
   router
 })
 
