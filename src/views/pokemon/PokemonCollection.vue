@@ -7,7 +7,7 @@
 
             <b-col cols="12" sm="4" md="3" v-for="(pokemon, index) in itemData" :key="index">
               <div class="card">
-                <div class="d-flex justify-content-end" @click="removeCollection(index, pokemon.pokemon_name)">
+                <div class="d-flex justify-content-end" @click="removeCollection(index, pokemon.pokemon_name)" v-ga="'remove pokemon'">
                   <b-icon icon="x-circle-fill" class="h5" variant="danger"></b-icon>
                 </div>
 
@@ -24,7 +24,7 @@
                   {{ pokemon.name }}
                 </p>
 
-                <b-btn variant="info" @click="$router.replace('/pokemon/collection/detail/'+pokemon.name)">Details</b-btn>
+                <b-btn variant="info" @click="$router.replace('/pokemon/collection/detail/'+pokemon.name)" v-ga="'redirect to detail pokemon'">Details</b-btn>
 
               </div>
             </b-col>

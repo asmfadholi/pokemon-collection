@@ -26,6 +26,11 @@ Vue.use(VueAnalytics, {
   autoTracking: {
     screenview: true
   },
+  commands: {
+    trackName (name = 'unknown') {
+      this.$ga.event('randomClicks', 'click', 'name', name)
+    }
+  },
   batch: {
     enabled: true, // enable/disable
     amount: 2, // amount of events fired

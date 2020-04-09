@@ -4,6 +4,7 @@
       size="lg"
       :hideFooter="true"
       @hidden="hideToRedirect"
+      v-ga="'redirect to leave detail pokemon'"
       ref="modalParent">
 
       <div class="pokemon-detail">
@@ -20,7 +21,7 @@
 
             <br>
 
-            <b-btn variant="success" @click="catchPokemon">Catch</b-btn>
+            <b-btn variant="success" @click="catchPokemon" v-ga="'catch pokemon'">Catch</b-btn>
           </div>
           <div v-else class="card catch loading">
 
@@ -33,7 +34,7 @@
         <div role="tablist">
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block href="#" v-b-toggle.accordion-1 variant="info">Types</b-button>
+              <b-button block href="#" v-b-toggle.accordion-1 variant="info" v-ga="'check type pokemon'">Types</b-button>
             </b-card-header>
             <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
               <b-card-body>
@@ -51,7 +52,7 @@
 
           <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-              <b-button block href="#" v-b-toggle.accordion-2 variant="info">Moves</b-button>
+              <b-button block href="#" v-b-toggle.accordion-2 variant="info" v-ga="'check moves pokemon'">Moves</b-button>
             </b-card-header>
             <b-collapse id="accordion-2" accordion="my-accordion" role="tabpanel">
               <b-card-body>
@@ -103,8 +104,8 @@
               </b-form>
 
               <div class="d-flex justify-content-center">
-                <b-btn variant="primary" @click="savePokemon" v-if="possibility === 'success'">Save</b-btn>
-                <b-btn variant="danger" @click="hideToRedirect" v-else-if="possibility === 'danger'">Back</b-btn>
+                <b-btn variant="primary" @click="savePokemon" v-if="possibility === 'success'" v-ga="'save pokemon'">Save</b-btn>
+                <b-btn variant="danger" @click="hideToRedirect" v-else-if="possibility === 'danger'" v-ga="'back after failed catch pokemon'">Back</b-btn>
               </div>
             </div>
 
