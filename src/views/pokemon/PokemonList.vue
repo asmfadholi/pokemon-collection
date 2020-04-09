@@ -100,7 +100,7 @@ export default {
     },
 
     detailPokemon (pokemon) {
-      this.$ga.event({
+      this.$ga.event('send', 'event', {
         eventCategory: 'button',
         eventAction: 'view',
         eventLabel: 'view detail pokemon'

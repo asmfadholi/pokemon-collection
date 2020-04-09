@@ -196,7 +196,7 @@ export default {
         if (this.value === 100) {
           clearInterval(intervalProgress)
           this.checkProbability()
-          this.$ga.event({
+          this.$ga.event('send', 'event', {
             eventCategory: 'button',
             eventAction: 'catch',
             eventLabel: 'catch ' + this.itemData.name
