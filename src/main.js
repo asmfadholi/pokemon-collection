@@ -23,6 +23,9 @@ Vue.use(VueSweetalert2)
 Vue.use(VueAnalytics, {
   id: process.env.VUE_APP_ANALYTICS,
   checkDuplicatedScript: true,
+  autoTracking: {
+    screenview: true
+  },
   router
 })
 
