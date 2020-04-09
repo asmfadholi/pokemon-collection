@@ -21,7 +21,8 @@ Vue.use(BootstrapVueIcons)
 Vue.use(VueRandomColor)
 Vue.use(VueSweetalert2)
 Vue.use(VueAnalytics, {
-  id: process.env.VUE_APP_ANALYTICS
+  id: process.env.VUE_APP_ANALYTICS,
+  router
 })
 
 Vue.config.productionTip = false
