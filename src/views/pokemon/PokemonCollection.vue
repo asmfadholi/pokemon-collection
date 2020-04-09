@@ -99,8 +99,8 @@ export default {
           this.$ga.event({
             eventCategory: 'button',
             eventAction: 'remove',
-            eventLabel: 'remove pokemon collection',
-            eventValue: this.pokemon.name
+            eventLabel: 'remove pokemon collection'
+
           })
         }
       })

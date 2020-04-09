@@ -103,8 +103,7 @@ export default {
       this.$ga.event({
         eventCategory: 'button',
         eventAction: 'view',
-        eventLabel: 'view detail pokemon',
-        eventValue: pokemon.name
+        eventLabel: 'view detail pokemon'
       })
       this.$router.replace('/pokemon/detail/' + pokemon.name)
     }

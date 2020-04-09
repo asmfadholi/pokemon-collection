@@ -199,8 +199,7 @@ export default {
           this.$ga.event({
             eventCategory: 'button',
             eventAction: 'catch',
-            eventLabel: 'catch ' + this.itemData.name,
-            eventValue: this.possibility
+            eventLabel: 'catch ' + this.itemData.name
           })
         }
       }, 500)
