@@ -12,7 +12,7 @@
     <div>
       <b-row v-if="!loading">
         <b-col cols="12" sm="6" md="4" lg="3" v-for="(pokemon, index) in itemData.results" :key="index">
-          <div class="card" @click="$router.replace('/pokemon/detail/'+ pokemon.name)">
+          <div class="card" @click="detailPokemon(pokemon)">
             <div class="d-flex justify-content-end total-collection">
               <b> {{ totalCollection(pokemon.name) }} </b>
             </div>
@@ -95,6 +95,16 @@ export default {
     totalCollection (name) {
       const isExist = this.pokemonState.collections.filter((data) => data.name === name)
       return isExist.length
+    },
+
+    detailPokemon (pokemon) {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'view',
+        eventLabel: 'view detail pokemon',
+        eventValue: pokemon.name
+      })
+      this.$router.replace('/pokemon/detail/' + pokemon.name)
     }
   }
 }

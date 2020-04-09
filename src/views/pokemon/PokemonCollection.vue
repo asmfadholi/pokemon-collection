@@ -96,6 +96,12 @@ export default {
       }).then((result) => {
         if (result.value) {
           this.$store.commit('PokemonStore/removeData', index)
+          this.$ga.event({
+            eventCategory: 'button',
+            eventAction: 'remove',
+            eventLabel: 'remove pokemon collection',
+            eventValue: this.pokemon.name
+          })
         }
       })
     }
