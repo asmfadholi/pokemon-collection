@@ -6,13 +6,14 @@
         v-model="currentPage"
         :total-rows="itemData.count"
         :per-page="20"
+        v-ga="$ga.commands.trackName.bind(this, 'move page')"
       ></b-pagination>
     </div>
 
     <div>
       <b-row v-if="!loading">
         <b-col cols="12" sm="6" md="4" lg="3" v-for="(pokemon, index) in itemData.results" :key="index">
-          <div class="card" @click="detailPokemon(pokemon)" v-ga="'detail pokemon'">
+          <div class="card" @click="detailPokemon(pokemon)" v-ga="$ga.commands.trackName.bind($parent, 'detail pokemon')">
             <div class="d-flex justify-content-end total-collection">
               <b> {{ totalCollection(pokemon.name) }} </b>
             </div>
@@ -46,6 +47,7 @@
         v-model="currentPage"
         :total-rows="itemData.count"
         :per-page="20"
+        v-ga="$ga.commands.trackName.bind(this, 'move page')"
       ></b-pagination>
     </div>
 
