@@ -26,6 +26,11 @@ Vue.use(VueAnalytics, {
   autoTracking: {
     screenview: true
   },
+  batch: {
+    enabled: true, // enable/disable
+    amount: 2, // amount of events fired
+    delay: 500 // delay in milliseconds
+  },
   router
 })
 
