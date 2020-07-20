@@ -1,14 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import PokemonStore from './modules/PokemonStore'
 import SecureLS from 'secure-ls'
 
 let ls = new SecureLS({ isCompression: true })
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   plugins: [
     createPersistedState({
       storage: {
@@ -17,8 +16,7 @@ export default new Vuex.Store({
         removeItem: key => ls.remove(key)
       }
     })
-  ],
-  modules: {
-    PokemonStore
-  }
+  ]
 })
+
+export default store

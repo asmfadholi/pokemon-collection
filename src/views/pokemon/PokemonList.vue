@@ -58,6 +58,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import PokemonStore from '@/stores/modules/PokemonStore'
 
 export default {
   name: 'PokemonList',
@@ -83,6 +84,12 @@ export default {
   },
   computed: {
     ...mapState('PokemonStore', ['pokemonState'])
+  },
+  beforeCreate () {
+    this.$store.registerModule('PokemonStore', PokemonStore)
+  },
+  beforeDestroy () {
+    this.$store.unregisterModule('PokemonStore')
   },
   created () {
     this.loading = true
