@@ -50,7 +50,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import PokemonStore from '@/stores/modules/PokemonStore'
+// import PokemonStore from '@/stores/modules/PokemonStore'
 
 export default {
   name: 'PokemonCollection',
@@ -79,10 +79,10 @@ export default {
   },
 
   beforeCreate () {
-    this.$store.registerModule('PokemonStore', PokemonStore)
+    // this.$store.registerModule('PokemonStore', PokemonStore)
   },
   beforeDestroy () {
-    this.$store.unregisterModule('PokemonStore')
+    // this.$store.unregisterModule('PokemonStore')
   },
 
   methods: {
